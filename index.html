@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IrisVerse · Productos digitales con descarga instantánea</title>
+  <meta name="description" content="Agendas digitales, pósters imprimibles, ebooks y plantillas. Diseño minimalista, compra rápida y redirección segura a Etsy. Descarga al instante." />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="IrisVerse · Productos digitales con descarga instantánea" />
+  <meta property="og:description" content="Agendas digitales, pósters, ebooks y plantillas. Compra rápida con redirección a Etsy." />
+  <meta property="og:image" content="assets/og-placeholder.jpg" />
+
+  <!-- FONTS & ICONS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --bg: #FFF7F3;
+      --surface: #FFFFFF;
+      --ink: #2A2A2A;
+      --muted: #6B7280;
+      --primary: #8B7CFD;
+      --primary-ink: #FFFFFF;
+      --accent: #7ED4C1;
+      --rose: #FFC8DD;
+      --sky: #CDE9FF;
+      --ring: rgba(139,124,253,.35);
+      --radius: 18px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md: 0 8px 24px rgba(0,0,0,.08);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,.12);
+      --container: 1080px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;overflow-x:hidden}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--ink);
+      background: radial-gradient(1200px 800px at 20% -10%, #FFF0F3 0%, transparent 60%),
+                  radial-gradient(1000px 700px at 120% 10%, #F0FFF9 0%, transparent 50%),
+                  var(--bg);
+      line-height:1.45;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;height:auto}
+    .container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:clamp(16px,4vw,28px)}
+    .boxed{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow-md)}
+    header{position:sticky;top:0;z-index:999;backdrop-filter:saturate(180%) blur(10px);background:rgba(255,255,255,.7);border-bottom:1px solid rgba(0,0,0,.05)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand i{color:var(--primary)}
+    .menu{display:flex;align-items:center;gap:8px}
+    .menu a{padding:10px 14px;border-radius:10px;font-weight:600;color:var(--muted)}
+    .menu a.active{color:var(--ink);background:#F5F3FF}
+    .cta-header{display:none}
+    .hamburger{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;border:1px solid rgba(0,0,0,.08);background:var(--surface);box-shadow:var(--shadow-sm)}
+    .hamburger i{font-size:18px}
+    #mobileMenu{display:none}
+
+    /* HERO */
+    .hero{padding:clamp(28px,6vw,64px) 0 24px}
+    .hero .wrap{display:grid;grid-template-columns:1fr;gap:22px;align-items:center}
+    .tag{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:12px;padding:8px 12px;border-radius:999px;background:#EEF2FF;color:#4338CA}
+    .h1{font-family:"DM Sans", Inter, system-ui;font-weight:700;letter-spacing:-.02em;font-size:clamp(28px,5.6vw,48px);line-height:1.1;margin:8px 0 12px}
+    .lead{color:var(--muted);font-size:clamp(14px,3.8vw,18px)}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;border-radius:14px;border:1px solid transparent;padding:12px 16px;transition:.2s ease}
+    .btn:focus-visible{outline:none;box-shadow:0 0 0 4px var(--ring)}
+    .btn-primary{background:var(--primary);color:var(--primary-ink);box-shadow:var(--shadow-md)}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:var(--shadow-lg);filter:saturate(105%)}
+    .btn-ghost{background:#F5F5F5;color:var(--ink);border-color:rgba(0,0,0,.06)}
+    .hero-visual{aspect-ratio: 16/10;background:linear-gradient(135deg,var(--rose),var(--sky));border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md)}
+    .hero-visual .placeholder{height:100%;display:grid;place-items:center;color:rgba(0,0,0,.5);font-weight:600}
+
+    /* Inline stats next to tag */
+    .tag-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+    .stat-pill{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid rgba(0,0,0,.08);box-shadow:var(--shadow-sm)}
+    .micro-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:#F0FDF4;border:1px solid rgba(34,197,94,.25)}
+    .micro-badge .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pulse 2s infinite}
+    .micro-badge .badge-text{font-size:11px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:.3px}
+    .stat-pill .stat-number{font-weight:900;font-variant-numeric:tabular-nums;font-size:clamp(16px,3.6vw,20px)}
+    .stat-pill .stat-label{font-weight:800;font-size:12px;color:var(--muted)}
+    @keyframes pulse{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(34,197,94,.6)}70%{transform:scale(1.06);box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+    .bump{animation:bump .4s ease}
+    @keyframes bump{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+
+    /* Sections */
+    .section{padding:clamp(28px,6vw,72px) 0}
+    .section .title{font-family:"DM Sans", Inter, system-ui;font-size:clamp(22px,4.8vw,34px);letter-spacing:-.02em;margin:0 0 8px}
+    .section .sub{color:var(--muted);margin:0 0 20px}
+    .grid{display:grid;gap:14px}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-4{grid-template-columns:repeat(4,1fr)}
+    .product-card{background:var(--surface);border:1px solid rgba(0,0,0,.06);border-radius:16px;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;box-shadow:var(--shadow-sm)}
+    .product-media{aspect-ratio:4/3;background:linear-gradient(135deg,#FDE1E8,#E7F8FF)}
+    .product-body{padding:12px}
+    .product-name{font-weight:700;margin:0 0 6px}
+    .product-desc{color:var(--muted);font-size:14px;margin:0 0 10px}
+    .product-actions{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-top:1px solid rgba(0,0,0,.06)}
+    .price{font-weight:700}
+
+    .benefits{display:grid;gap:12px}
+    .benefit{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;padding:12px;border:1px dashed rgba(0,0,0,.08);border-radius:14px;background:#FBFBFF}
+    .benefit i{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:#EEF2FF;color:#4338CA}
+
+    .subscribe-banner{display:grid;gap:12px;padding:18px;border-radius:16px;background:linear-gradient(180deg,#F8F7FF,#FFFFFF);border:1px solid rgba(0,0,0,.06);box-shadow:var(--shadow-sm)}
+    .subscribe-form{display:grid;grid-template-columns:1fr;gap:10px}
+    .input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,.12);background:#fff}
+
+    .testimonials{display:grid;gap:12px}
+    .quote{background:var(--surface);border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:14px;box-shadow:var(--shadow-sm)}
+    .quote strong{display:block;margin-top:8px;font-weight:700}
+
+    #productos .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+    .chip{font-weight:600;padding:8px 12px;border-radius:999px;border:1px solid rgba(0,0,0,.08);background:#fff;cursor:pointer}
+    .chip.active{background:#F5F3FF;border-color:#E0E7FF}
+
+    footer{margin-top:20px;padding:28px 0 48px;color:var(--muted)}
+    .socials{display:flex;gap:10px}
+    .socials a{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;border:1px solid rgba(0,0,0,.08);background:#fff}
+
+    .modal{position:fixed;inset:0;display:none;place-items:center;backdrop-filter:blur(6px);background:rgba(0,0,0,.28);z-index:1000}
+    .modal.open{display:grid}
+    .modal-card{width:min(560px,92vw);background:var(--surface);border-radius:18px;padding:18px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.08)}
+    .modal-header{display:flex;align-items:start;justify-content:space-between;gap:8px}
+    .close{background:#fff;border:1px solid rgba(0,0,0,.1);width:40px;height:40px;border-radius:12px;display:grid;place-items:center;cursor:pointer}
+
+    /* Mobile-first overflow fix */
+    @media (max-width:719.98px){
+      #desktopMenu{display:none}
+      .nav{min-width:0}
+      .nav > *{min-width:0}
+    }
+    @media (min-width:720px){
+      .hero .wrap{grid-template-columns:1.05fr .95fr;gap:26px}
+      .cta-header{display:inline-flex}
+      .hamburger{display:none}
+      .grid.cols-md-3{grid-template-columns:repeat(3,1fr)}
+      .grid.cols-md-4{grid-template-columns:repeat(4,1fr)}
+      .benefits{grid-template-columns:repeat(2,1fr)}
+      .testimonials{grid-template-columns:repeat(3,1fr)}
+      .subscribe-form{grid-template-columns:1fr auto}
+    }
+    @media (min-width:1024px){
+      .grid.cols-lg-4{grid-template-columns:repeat(4,1fr)}
+      .grid.cols-lg-5{grid-template-columns:repeat(5,1fr)}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="nav" aria-label="Principal">
+        <a href="#home" class="brand" aria-label="Inicio IrisVerse">
+          <i class="fa-solid fa-sparkles"></i>
+          <span>IrisVerse</span>
+        </a>
+        <div class="menu" id="desktopMenu">
+          <a href="#home" class="active">Inicio</a>
+          <a href="#productos">Todos los productos</a>
+          <a href="#suscribirse">Suscribirse</a>
+          <a class="btn btn-primary cta-header" href="https://www.etsy.com/shop/TU_TIENDA" target="_blank" rel="noopener" aria-label="Ver tienda en Etsy">
+            <i class="fa-brands fa-etsy"></i> Ver tienda en Etsy
+          </a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+      </nav>
+      <div id="mobileMenu" class="container" style="padding-bottom:12px">
+        <div class="menu boxed" style="padding:8px; justify-content: space-around;">
+          <a href="#home">Inicio</a>
+          <a href="#productos">Productos</a>
+          <a href="#suscribirse">Suscribirse</a>
+          <a class="btn btn-primary" style="margin-left:auto" href="https://www.etsy.com/shop/TU_TIENDA" target="_blank" rel="noopener">
+            <i class="fa-brands fa-etsy"></i> Etsy
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container">
+        <div class="wrap">
+          <div>
+            <div class="tag-row">
+              <span class="tag"><i class="fa-regular fa-bolt"></i> Descarga instantánea</span>
+              <div class="stat-pill" aria-live="polite" aria-atomic="true" role="status" aria-label="Descargas de hoy">
+                <div class="micro-badge"><span class="dot" aria-hidden="true"></span><span class="badge-text" aria-hidden="true">⬇️</span></div>
+                <span id="dlToday" class="stat-number">—</span>
+                <strong class="stat-label">descargas hoy</strong>
+              </div>
+            </div>
+            <h1 class="h1">Plantillas y pósters que <span style="background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent;">ahorran tiempo</span> y se ven <em>estéticos</em>.</h1>
+            <p class="lead">Agendas digitales, ebooks y recursos listos para usar. Compra en Etsy en un click, vuelve cuando quieras por más.</p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="https://www.etsy.com/shop/TU_TIENDA" target="_blank" rel="noopener">
+                <i class="fa-brands fa-etsy"></i> 👉 Ver tienda en Etsy
+              </a>
+              <a class="btn btn-ghost" href="#productos"><i class="fa-regular fa-grid"></i> Explorar productos</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="placeholder">[ PLACEHOLDER: Imagen hero 1200×750 ]</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="top5-title">
+      <div class="container">
+        <div class="boxed" style="padding:16px;">
+          <h2 id="top5-title" class="title">Top 5 del mes</h2>
+          <p class="sub">Los más amados por la comunidad. <strong>Stock digital ilimitado</strong>, descarga al instante.</p>
+          <div class="grid cols-2 cols-md-3 cols-lg-5" id="top5">
+            <article class="product-card" aria-label="Agenda digital minimal">
+              <div class="product-media" aria-hidden="true"></div>
+              <div class="product-body">
+                <h3 class="product-name">Agenda Digital Minimal</h3>
+                <p class="product-desc">Planifica tu semana con links rápidos y estética pastel.</p>
+              </div>
+              <div class="product-actions">
+                <span class="price">€8,90</span>
+                <a class="btn btn-primary" href="https://www.etsy.com/listing/ID_AGENDA_MINIMAL" target="_blank" rel="noopener">Ver en Etsy</a>
+              </div>
+            </article>
+            <article class="product-card" aria-label="Póster imprimible quote">
+              <div class="product-media"></div>
+              <div class="product-body">
+                <h3 class="product-name">Póster Quote Aesthetic</h3>
+                <p class="product-desc">Mensaje motivador en tipografía moderna. 4 tamaños.</p>
+              </div>
+              <div class="product-actions">
+                <span class="price">€4,50</span>
+                <a class="btn btn-primary" href="https://www.etsy.com/listing/ID_POSTER_QUOTE" target="_blank" rel="noopener">Ver en Etsy</a>
+              </div>
+            </article>
+            <article class="product-card" aria-label="Pack plantillas Notion">
+              <div class="product-media"></div>
+              <div class="product-body">
+                <h3 class="product-name">Pack Notion Productividad</h3>
+                <p class="product-desc">Tareas, hábitos y finanzas en un solo lugar.</p>
+              </div>
+              <div class="product-actions">
+                <span class="price">€12,00</span>
+                <a class="btn btn-primary" href="https://www.etsy.com/listing/ID_PACK_NOTION" target="_blank" rel="noopener">Ver en Etsy</a>
+              </div>
+            </article>
+            <article class="product-card" aria-label="Ebook organización">
+              <div class="product-media"></div>
+              <div class="product-body">
+                <h3 class="product-name">Ebook: Ordena tu Vida</h3>
+                <p class="product-desc">Guía práctica con checklists imprimibles.</p>
+              </div>
+              <div class="product-actions">
+                <span class="price">€6,90</span>
+                <a class="btn btn-primary" href="https://www.etsy.com/listing/ID_EBOOK_ORDEN" target="_blank" rel="noopener">Ver en Etsy</a>
+              </div>
+            </article>
+            <article class="product-card" aria-label="Kit emprendedores">
+              <div class="product-media"></div>
+              <div class="product-body">
+                <h3 class="product-name">Kit Emprende Rápido</h3>
+                <p class="product-desc">Contraportadas, mockups y recursos de marca.</p>
+              </div>
+              <div class="product-actions">
+                <span class="price">€14,90</span>
+                <a class="btn btn-primary" href="https://www.etsy.com/listing/ID_KIT_EMPRENDE" target="_blank" rel="noopener">Ver en Etsy</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="beneficios-title">
+      <div class="container">
+        <h2 id="beneficios-title" class="title">Por qué comprar aquí</h2>
+        <p class="sub">Cero caos, todo simple. Diseñado para compras <em>rápidas</em> en móvil.</p>
+        <div class="benefits">
+          <div class="benefit">
+            <i class="fa-regular fa-bolt"></i>
+            <div>
+              <strong>Descarga inmediata</strong>
+              <p class="product-desc" style="margin:4px 0 0">Recibe tus archivos al instante tras pagar en Etsy. Sin esperas.</p>
+            </div>
+          </div>
+          <div class="benefit">
+            <i class="fa-regular fa-stars"></i>
+            <div>
+              <strong>Estética que enamora</strong>
+              <p class="product-desc" style="margin:4px 0 0">Paleta pastel y tipografías limpias para feeds bonitos y PDFs pro.</p>
+            </div>
+          </div>
+          <div class="benefit">
+            <i class="fa-regular fa-shield-check"></i>
+            <div>
+              <strong>Compra segura en Etsy</strong>
+              <p class="product-desc" style="margin:4px 0 0">Pagos protegidos y soporte centralizado.</p>
+            </div>
+          </div>
+          <div class="benefit">
+            <i class="fa-regular fa-mobile"></i>
+            <div>
+              <strong>Mobile‑first real</strong>
+              <p class="product-desc" style="margin:4px 0 0">Botones grandes, carga ligera y navegación sin fricción.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="suscribirse" aria-labelledby="sus-title">
+      <div class="container">
+        <div class="subscribe-banner">
+          <h2 id="sus-title" class="title">Únete y consigue un <span style="background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent">10% OFF</span></h2>
+          <p class="sub">Te enviamos recursos gratuitos, lanzamientos y códigos sorpresa. Sin spam, palabra.</p>
+          <form class="subscribe-form" action="#" method="post" onsubmit="event.preventDefault(); openThanks();">
+            <label class="sr-only" for="email">Correo electrónico</label>
+            <input class="input" type="email" id="email" name="email" placeholder="tu@email.com" required>
+            <button class="btn btn-primary" type="submit"><i class="fa-regular fa-envelope"></i> Suscribirme</button>
+          </form>
+          <small class="product-desc">Al suscribirte aceptas nuestra <a href="#" style="text-decoration:underline">política de privacidad</a>.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="social-title">
+      <div class="container">
+        <h2 id="social-title" class="title">Lo que dicen</h2>
+        <div class="testimonials">
+          <blockquote class="quote">“Plantillas preciosas, fáciles de usar. Compré en el metro y en 5 minutos ya lo tenía todo.”<strong>— Laura G.</strong></blockquote>
+          <blockquote class="quote">“El pack de Notion me subió la productividad x2. Visual limpio y práctico.”<strong>— Diego V.</strong></blockquote>
+          <blockquote class="quote">“Atención 10/10 y descarga instantánea. Repetiré seguro.”<strong>— Ana R.</strong></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="productos" aria-labelledby="all-title">
+      <div class="container">
+        <h2 id="all-title" class="title">Todos los productos</h2>
+        <p class="sub">Galería visual. Toca y compra en Etsy. <em>(Puedes duplicar tarjetas para añadir más)</em></p>
+        <div class="filters" aria-label="Filtros">
+          <button class="chip active" data-filter="all">Todos</button>
+          <button class="chip" data-filter="agendas">Agendas</button>
+          <button class="chip" data-filter="posters">Pósters</button>
+          <button class="chip" data-filter="ebooks">eBooks</button>
+          <button class="chip" data-filter="plantillas">Plantillas</button>
+        </div>
+
+        <div class="grid cols-2 cols-md-3 cols-lg-4" id="productsGrid">
+          <article class="product-card" data-cat="agendas">
+            <div class="product-media" title="Reemplaza por IMG"></div>
+            <div class="product-body">
+              <h3 class="product-name">Agenda Digital Pastel 2025</h3>
+              <p class="product-desc">Hipervínculos, modo oscuro/claro, stickers incluidos.</p>
+            </div>
+            <div class="product-actions">
+              <span class="price">€9,90</span>
+              <a class="btn btn-primary" href="https://www.etsy.com/listing/ID_AGENDA_2025" target="_blank" rel="noopener">Ver en Etsy</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-cat="posters">
+            <div class="product-media"></div>
+            <div class="product-body">
+              <h3 class="product-name">Póster Minimal Sunrise</h3>
+              <p class="product-desc">4:5, 3:4, 2:3 y A1‑A5 para imprimir sin lío.</p>
+            </div>
+            <div class="product-actions">
+              <span class="price">€4,20</span>
+              <a class="btn btn-primary" href="https://www.etsy.com/listing/ID_POSTER_SUNRISE" target="_blank" rel="noopener">Ver en Etsy</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-cat="plantillas">
+            <div class="product-media"></div>
+            <div class="product-body">
+              <h3 class="product-name">Plantillas Canva Pack IG</h3>
+              <p class="product-desc">Carruseles, portadas y stories listos para editar.</p>
+            </div>
+            <div class="product-actions">
+              <span class="price">€7,50</span>
+              <a class="btn btn-primary" href="https://www.etsy.com/listing/ID_CANVA_IG" target="_blank" rel="noopener">Ver en Etsy</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-cat="ebooks">
+            <div class="product-media"></div>
+            <div class="product-body">
+              <h3 class="product-name">eBook: Rutinas que Funcionan</h3>
+              <p class="product-desc">Hábitos, foco y herramientas para vencer la procrastinación.</p>
+            </div>
+            <div class="product-actions">
+              <span class="price">€5,90</span>
+              <a class="btn btn-primary" href="https://www.etsy.com/listing/ID_EBOOK_RUTINAS" target="_blank" rel="noopener">Ver en Etsy</a>
+            </div>
+          </article>
+
+          <article class="product-card" data-cat="plantillas">
+            <div class="product-media"></div>
+            <div class="product-body">
+              <h3 class="product-name">Pack Notion Freelance</h3>
+              <p class="product-desc">Propuestas, CRM simple y control de ingresos‑gastos.</p>
+            </div>
+            <div class="product-actions">
+              <span class="price">€13,90</span>
+              <a class="btn btn-primary" href="https://www.etsy.com/listing/ID_NOTION_FREELANCE" target="_blank" rel="noopener">Ver en Etsy</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="boxed" style="padding:16px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <small>© <span id="year"></span> IrisVerse. Todos los derechos reservados.</small>
+        <div class="socials" aria-label="Redes sociales">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+          <a href="#" aria-label="Etsy"><i class="fa-brands fa-etsy"></i></a>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:10px;">
+        <a href="#" style="margin-right:12px">Aviso legal</a>
+        <a href="#" style="margin-right:12px">Privacidad</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="subscribeModal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title" class="h1" style="font-size: clamp(22px, 4.8vw, 32px);">10% de descuento hoy</h3>
+        <button class="close" aria-label="Cerrar" onclick="closeModal()"><i class="fa-regular fa-xmark"></i></button>
+      </div>
+      <p class="lead">Suscríbete y te enviamos el código al email. También regalamos un <strong>pack de stickers</strong> PDF.</p>
+      <form class="subscribe-form" action="#" method="post" onsubmit="event.preventDefault(); openThanks();">
+        <input class="input" type="email" placeholder="tu@email.com" required>
+        <button class="btn btn-primary" type="submit"><i class="fa-regular fa-ticket"></i> Conseguir código</button>
+      </form>
+      <small class="product-desc">No spam, cancela cuando quieras.</small>
+    </div>
+  </div>
+
+  <script>
+    // Año en footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Menú móvil
+    const burger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    burger?.addEventListener('click', () => {
+      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Resaltar enlace activo
+    const sections = ['home','productos','suscribirse'];
+    const menuLinks = Array.from(document.querySelectorAll('.menu a'));
+    const onScroll = () => {
+      let fromTop = window.scrollY + 120;
+      let current = sections.findLast(id => {
+        const el = document.getElementById(id);
+        return el && el.offsetTop <= fromTop;
+      });
+      menuLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${current || 'home'}`));
+    };
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Filtros productos
+    const chips = document.querySelectorAll('.chip');
+    const cards = document.querySelectorAll('#productsGrid .product-card');
+    chips.forEach(chip => chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.dataset.filter;
+      cards.forEach(card => {
+        card.style.display = (filter === 'all' || card.dataset.cat === filter) ? '' : 'none';
+      });
+    }));
+
+    // Popup suscripción (una vez)
+    const modal = document.getElementById('subscribeModal');
+    const MODAL_KEY = 'irisverse_sub_shown_v1';
+    function openModal(){ modal.classList.add('open'); }
+    function closeModal(){ modal.classList.remove('open'); }
+    function openThanks(){
+      closeModal();
+      alert('¡Gracias! Revisa tu correo para el código 🎁');
+    }
+    window.closeModal = closeModal; window.openThanks = openThanks;
+    setTimeout(() => {
+      const shown = localStorage.getItem(MODAL_KEY);
+      const inSubSection = location.hash === '#suscribirse';
+      if(!shown && !inSubSection){ openModal(); localStorage.setItem(MODAL_KEY,'1'); }
+    }, 12000);
+
+    // ===== Descargas hoy (contador verosímil) =====
+    (function(){
+      const numberEl = document.getElementById('dlToday');
+      if(!numberEl) return;
+
+      function dayKey(d){ return d.toISOString().slice(0,10); }
+      function isWeekend(d){ const x=d.getDay(); return x===0||x===6||x===5; } // pico vie-dom
+
+      function getDailyTarget(d){
+        const key = 'dl_target_'+dayKey(d);
+        let t = localStorage.getItem(key);
+        if(t){ return parseInt(t,10); }
+        // Rango base (ajústalo a tu realidad): 16–87 diarias; ligero boost fines de semana
+        let min = 16, max = 87;
+        if(isWeekend(d)){ min = Math.min(max, min + 6); }
+        t = Math.floor(min + Math.random() * (max - min + 1));
+        localStorage.setItem(key, String(t));
+        Object.keys(localStorage).forEach(k=>{ if(k.startsWith('dl_target_') && k!==key) localStorage.removeItem(k); });
+        return t;
+      }
+
+      const weights = [0.2,0.1,0.1,0.1,0.2,0.5,0.8,1.1,1.5,2.0,2.2,2.4,2.2,2.0,1.9,2.1,2.5,3.1,3.6,4.2,3.2,2.4,1.3,0.7];
+      const totalW = weights.reduce((a,b)=>a+b,0);
+      let prevShown = -1;
+
+      function expectedFraction(now){
+        const h = now.getHours();
+        const m = now.getMinutes()/60;
+        let sum = 0;
+        for(let i=0; i<h; i++) sum += weights[i];
+        sum += weights[h] * m;
+        return Math.min(1, sum / totalW);
+      }
+
+      function update(){
+        const now = new Date();
+        const target = getDailyTarget(now);
+        const frac = expectedFraction(now);
+        let base = Math.floor(target * frac);
+        const jitter = Math.random() < 0.35 ? 1 : 0;
+        let shown = Math.min(target, base + jitter);
+        if(shown !== prevShown){
+          numberEl.textContent = shown.toLocaleString('es-ES');
+          numberEl.classList.remove('bump'); void numberEl.offsetWidth; numberEl.classList.add('bump');
+          prevShown = shown;
+        }
+      }
+
+      update();
+      setInterval(()=>{
+        const key = 'dl_target_'+dayKey(new Date());
+        if(!localStorage.getItem(key)) getDailyTarget(new Date());
+        update();
+      }, 60000);
+    })();
+
+    // Scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const targetId = a.getAttribute('href').slice(1);
+        const el = document.getElementById(targetId);
+        if(el){
+          e.preventDefault();
+          window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' });
+          history.replaceState(null, '', `#${targetId}`);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
